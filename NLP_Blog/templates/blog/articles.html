@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} Index {% endblock %}
+
+{% block content %}
+    <main class="container">
+        <div class="row">
+            <div class="col-md-8 position-relative">
+                <h3 class="pb-4 font-italic border-bottom">
+                    Django Lesson
+                </h3>
+                {% for article in page_obj %}
+                    <ul style="list-style:none">
+                        <li><h3>Title: {{ article.title }}</h3></li>
+                        <li>URL: <a href="{{ article.url }}" target="_blank">{{ article.url }}</a></li>
+                        <li>コメント: {{ article.text }}</li>
+                        <li>投稿者: {{ article.author }}</li>
+                        <li>更新日: {{ article.update_at }}</li>
+                    </ul>
+                    <a href="{% url 'blog:show_article' pk=article.id %}">詳細はこちら</a>
+                    <hr>
+                {% endfor %}
+
+                {% comment %} DjangoのPageNation機能 {% endcomment %}
+                {% include 'snippets/pagenation.html' %}
+
+            </div>
+            {% include '../snippets/sidebar.html' %}
+        </div>
+    </main>
+
+{% endblock %}

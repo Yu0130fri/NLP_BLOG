@@ -1,0 +1,2 @@
+# Cloud SQLへ接続
+./secrets/cloud_sql_proxy -instances=nlp-recommendation:us-central1:nlp-recommendation-instance=tcp:5432

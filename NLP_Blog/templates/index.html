@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %} Index {% endblock %}
+
+{% block content %}
+    <div class="p-4 p-md-5 mb-4 rounded bg-warning">
+        <div class="col-md-5 px-0">
+            <h1 class="display-4 font-italic">Django講座</h1>
+            <p class="lead my-3">文章をかこう</p>
+            <p class="lead mb-0">
+                <a href="#" class="font-weight-bold">続きを読む</a>
+            </p>
+        </div>
+    </div>
+    <div class="row justify-content-evenly">
+        <div class="col-4">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row 
+            mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">Django</strong>
+                    <h3 class="mb-0">人気の記事</h3>
+                    <div class="mb-1 text-muted">11/12</div>
+                    <p class="card-text mb-auto">文章をかこう</p>
+                    <a href="#" class="stretched-link">続きを読む</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row 
+            mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">Django</strong>
+                    <h3 class="mb-0">人気の記事</h3>
+                    <div class="mb-1 text-muted">11/12</div>
+                    <p class="card-text mb-auto">文章をかこう</p>
+                    <a href="#" class="stretched-link">続きを読む</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="row">
+            <div class="col-md-8 position-relative">
+                <h3 class="pb-4 font-italic border-bottom">
+                    Django Lesson
+                </h3>
+                {% for article in articles %}
+                    <ul style="list-style:none">
+                        <li><h3>Title: {{ article.title }}</h3></li>
+                        <li>URL: <a href="{{ article.url }}" target="_blank">{{ article.url }}</a></li>
+                        <li>コメント: {{ article.text }}</li>
+                        <li>投稿者: {{ article.author }}</li>
+                        <li>更新日: {{ article.update_at }}</li>
+                    </ul>
+                    <a href="{% url 'blog:show_article' pk=article.id %}">詳細はこちら</a>
+                    <hr>
+                {% endfor %}
+                <nav class="blog-pagination">
+                    <a class="btn btn-outline-primary" href="{% url 'blog:index'%}">ブログ一覧はこちら</a>
+                </nav>
+            </div>
+            
+            {% include 'snippets/sidebar.html' %}
+
+        </div>
+    </main>
+
+
+{% endblock %}
