@@ -1,2 +1,1 @@
-# diff-practice
-Git動画講座diff練習用
+Djangoを用いてブログを作成（進行中）
